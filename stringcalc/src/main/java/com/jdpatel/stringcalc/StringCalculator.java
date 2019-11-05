@@ -15,7 +15,13 @@ public class StringCalculator
     	if (text == null || text.isEmpty()) {
             return 0;
         }  
-         return (int) Double.parseDouble(text);
+    	int total = 0;
+    	String[] numbers = text.split(",");  
+    	for (String item : numbers) {
+                total += Integer.parseInt(item);
+        }
+    	
+        return total;
          
     }
 }
