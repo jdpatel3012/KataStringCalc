@@ -2,6 +2,7 @@ package com.jdpatel.stringcalc;
 
 import org.junit.Test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -37,6 +38,12 @@ public class StringCalculatorTest {
     public void supportNewLineAsSeparator() {
         StringCalculator strCalc = new StringCalculator();
         assertEquals(6, strCalc.add("1\n2,3"));
+    }
+    
+    @Test
+    public void supportForCustomDelimiter() {
+        StringCalculator strCalc = new StringCalculator();
+        assertEquals(10, strCalc.add(";\n1;2;3;4"));
     }
 }
 
