@@ -22,12 +22,26 @@ public class StringCalculator
     	String customDelimiter = getCustomDelimiter(text.split("\n")[0]);
     	List<String> negetiveNumbers = new ArrayList<String>();
     	
-    	int total = 0;
-    	int skipFirstLines =  ((customDelimiter == ",") ? 0 : customDelimiter.contains("|") ? 
-        		( 2 + (int) customDelimiter.chars().filter(ch -> ch == '|').count() ) 
-        		: 2)   ;
+    	
+    	int skipFirstLines =  calculateSkipLines(customDelimiter);
     	String[] numbers =  (customDelimiter == ",") ? text.split(",|\n") : text.split("\n|" + customDelimiter);   
-    	for (String item : numbers) {
+    	int total = addNumbers(negetiveNumbers,  skipFirstLines, numbers);
+    	validateNegetiveNumbers(negetiveNumbers);
+    	
+        return total;
+         
+    }
+
+	private void validateNegetiveNumbers(List<String> negetiveNumbers) {
+		if (!negetiveNumbers.isEmpty()) {
+            throw new IllegalArgumentException(
+                "negatives not allowed " + String.join(",", negetiveNumbers));
+        }
+	}
+
+	private int addNumbers(List<String> negetiveNumbers,  int skipFirstLines, String[] numbers) {
+		int total =0 ;
+		for (String item : numbers) {
     		 if (skipFirstLines > 0) {
                  --skipFirstLines;
              } else {
@@ -40,14 +54,14 @@ public class StringCalculator
                  }
              }
         }
-    	if (!negetiveNumbers.isEmpty()) {
-            throw new IllegalArgumentException(
-                "negatives not allowed " + String.join(",", negetiveNumbers));
-        }
-    	
-        return total;
-         
-    }
+		return total;
+	}
+
+	private int calculateSkipLines(String customDelimiter) {
+		return (customDelimiter == ",") ? 0 : customDelimiter.contains("|") ? 
+        		( 2 + (int) customDelimiter.chars().filter(ch -> ch == '|').count() ) 
+        		: 2;
+	}
     
     private String getCustomDelimiter(String line) {
         if (line == null || line.isEmpty()) {
