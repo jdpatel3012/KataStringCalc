@@ -2,7 +2,6 @@ package com.jdpatel.stringcalc;
 
 import org.junit.Test;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -44,6 +43,18 @@ public class StringCalculatorTest {
     public void supportForCustomDelimiter() {
         StringCalculator strCalc = new StringCalculator();
         assertEquals(10, strCalc.add(";\n1;2;3;4"));
+    }
+    
+    @Test
+    public void negativeNotSupported() {
+        StringCalculator strCalc = new StringCalculator();
+        try {
+            strCalc.add("-1,2");
+            fail("exception should have been thrown");
+        }
+        catch (IllegalArgumentException e) {
+            assertEquals("negatives not allowed -1", e.getMessage());
+        }
     }
 }
 
