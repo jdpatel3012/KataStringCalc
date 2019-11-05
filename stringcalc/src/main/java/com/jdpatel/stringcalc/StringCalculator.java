@@ -56,7 +56,11 @@ public class StringCalculator
         }
         if (line.length() == 1) {
             return line.substring(0, 1);
-        }       
+        }
+        if(line.startsWith("[") && line.endsWith("]") )
+        {
+        	return line.substring(1,line.length()-1);
+        }
         return ",";
     }
     
