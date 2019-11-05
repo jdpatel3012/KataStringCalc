@@ -1,5 +1,8 @@
 package com.jdpatel.stringcalc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -17,6 +20,7 @@ public class StringCalculator
         }
     	
     	String customDelimiter = getCustomDelimiter(text.split("\n")[0]);
+    	List<String> negetiveNumbers = new ArrayList<String>();
     	
     	int total = 0;
     	int skipFirstLines =  (customDelimiter == ",") ? 0 : 2 ;
@@ -25,8 +29,18 @@ public class StringCalculator
     		 if (skipFirstLines > 0) {
                  --skipFirstLines;
              } else {
-                total += Integer.parseInt(item);
+            	 int num = Integer.parseInt(item);
+            	 if (num < 0) {
+                     negetiveNumbers.add(item);
+                 }
+                 else {
+                total += num;
+                 }
              }
+        }
+    	if (!negetiveNumbers.isEmpty()) {
+            throw new IllegalArgumentException(
+                "negatives not allowed " + String.join(",", negetiveNumbers));
         }
     	
         return total;
