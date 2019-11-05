@@ -16,35 +16,7 @@ public class StringCalculator
             return 0;
         }
     	
-    	String customDelimiter = text.split("\n")[0];
-    	
-    	 if (customDelimiter == null || customDelimiter.isEmpty()) {
-    		 customDelimiter =  ",";
-         }
-    	 else {
-    		 boolean isNumeric = true ;
-    		 try {
-    	            Double.parseDouble(customDelimiter);
-    	        } catch (NumberFormatException nfe) {
-    	        	isNumeric = false;
-    	        }
-    		 
-    		 if (isNumeric) {
-    			 customDelimiter =  ",";	 
-    		 	}
-        	 
-         
-    	 else if (customDelimiter.length() == 1) {
-    		 
-        	 customDelimiter =  customDelimiter.substring(0, 1);;
-         }
-    	 else 
-    	 {
-    		 customDelimiter =  ",";	 
-    	 }
-    		 
-    }
-    	
+    	String customDelimiter = getCustomDelimiter(text.split("\n")[0]);
     	
     	int total = 0;
     	int skipFirstLines =  (customDelimiter == ",") ? 0 : 2 ;
@@ -57,9 +29,29 @@ public class StringCalculator
              }
         }
     	
-    	
-    	
         return total;
          
+    }
+    
+    private String getCustomDelimiter(String line) {
+        if (line == null || line.isEmpty()) {
+            return ",";
+        }
+        if (isNumeric(line)) {
+            return ",";
+        }
+        if (line.length() == 1) {
+            return line.substring(0, 1);
+        }       
+        return ",";
+    }
+    
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
