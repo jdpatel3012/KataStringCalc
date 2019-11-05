@@ -63,6 +63,12 @@ public class StringCalculatorTest {
     	StringCalculator strCalc = new StringCalculator();
         assertEquals(5, strCalc.add("1001\n2,3"));
     }
+    @Test
+    public void supportForCustomDelimiterWithSqure() {
+    	StringCalculator strCalc = new StringCalculator();
+        assertEquals(6, strCalc.add("[@@@]\n1@@@2@@@3"));
+    }
+    
 }
 
 
