@@ -69,6 +69,12 @@ public class StringCalculatorTest {
         assertEquals(6, strCalc.add("[@@@]\n1@@@2@@@3"));
     }
     
+    @Test
+    public void supportForCustomDelimiterWithMultiSqure() {
+    	StringCalculator strCalc = new StringCalculator();
+        assertEquals(38, strCalc.add("[foo][bar]\n1foo2bar35"));
+    }
+    
 }
 
 
