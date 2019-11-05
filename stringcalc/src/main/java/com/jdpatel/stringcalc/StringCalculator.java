@@ -23,7 +23,9 @@ public class StringCalculator
     	List<String> negetiveNumbers = new ArrayList<String>();
     	
     	int total = 0;
-    	int skipFirstLines =  (customDelimiter == ",") ? 0 : 2 ;
+    	int skipFirstLines =  ((customDelimiter == ",") ? 0 : customDelimiter.contains("|") ? 
+        		( 2 + (int) customDelimiter.chars().filter(ch -> ch == '|').count() ) 
+        		: 2)   ;
     	String[] numbers =  (customDelimiter == ",") ? text.split(",|\n") : text.split("\n|" + customDelimiter);   
     	for (String item : numbers) {
     		 if (skipFirstLines > 0) {
@@ -59,7 +61,8 @@ public class StringCalculator
         }
         if(line.startsWith("[") && line.endsWith("]") )
         {
-        	return line.substring(1,line.length()-1);
+        	line =  line.substring(1,line.length()-1);
+        	return line.replace("][" , "|");
         }
         return ",";
     }
