@@ -11,7 +11,7 @@ public class StringCalculatorTest {
     @Test
     public void returnZeroForEmptyString() {
         StringCalculator strCalc = new StringCalculator();
-        assertEquals(0, 0);
+        assertEquals(0, strCalc.add(""));
     }
    
 }
