@@ -4,7 +4,7 @@ package com.jdpatel.stringcalc;
  * Hello world!
  *
  */
-public class App 
+public class StringCalculator 
 {
     public static void main( String[] args )
     {
