@@ -2,6 +2,7 @@ package com.jdpatel.stringcalc;
 
 import org.junit.Test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -25,6 +26,12 @@ public class StringCalculatorTest {
     public void returnSumForTwoNumbers() {
         StringCalculator strCalc = new StringCalculator();
         assertEquals(7, strCalc.add("2,5"));
+    }
+    
+    @Test
+    public void returnSumForMultipleNumers() {
+        StringCalculator strCalc = new StringCalculator();
+        assertEquals(45, strCalc.add("1,2,3,4,5,6,7,8,9"));
     }
    
 }
