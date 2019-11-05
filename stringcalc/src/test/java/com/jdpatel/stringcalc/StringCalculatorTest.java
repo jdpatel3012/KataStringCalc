@@ -2,6 +2,7 @@ package com.jdpatel.stringcalc;
 
 import org.junit.Test;
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -55,6 +56,12 @@ public class StringCalculatorTest {
         catch (IllegalArgumentException e) {
             assertEquals("negatives not allowed -1", e.getMessage());
         }
+    }
+    
+    @Test
+    public void ignoreNumberMoreThan1000() {
+    	StringCalculator strCalc = new StringCalculator();
+        assertEquals(5, strCalc.add("1001\n2,3"));
     }
 }
 
